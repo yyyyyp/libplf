@@ -60,6 +60,23 @@ class Test_2_1(Test):
     def defs(self):
         return []
 
+class Test_2_2(Test):
+    def args(self):
+        return [
+            piece(
+                point(vector(ax, ay), vector(az, au)),
+                point(vector(bx, by), vector(bz, bu)),
+                point(vector(cx, cy), vector(cz, cu)),
+            )
+            for
+            (ax, ay, az, au),
+            (bx, by, bz, bu),
+            (cx, cy, cz, cu),
+            in self.defs()
+        ]
+
+    def defs(self):
+        return []
 
 class Test_1_1_Dup(Test_1_1):
     def defs(self):
@@ -227,3 +244,93 @@ class Test_2_1_PointOnEdge(Test_2_1):
             [(0, 0, 0), (2, 0, 2), (0, 1, 2)],
             [(1, 0, 1), (-1, -1, 2), (0, -1, 2)],
         ]
+
+
+class Test_2_2_Dup(Test_2_2):
+    def defs(self):
+        return [
+            [(0, 0, 0, 1), (1, 0, 1, 1), (0, 1, 2, 1)],
+            [(0, 0, 0, 1), (1, 0, 1, 1), (0, 1, 2, 1)],
+        ]
+
+
+class Test_2_2_Contain(Test_2_2):
+    def defs(self):
+        return [
+            [(0, 0, 0, 1), (1, 0, 1, 1), (0, 1, 2, 1)],
+            [(-1, -1, 0, 1), (2, 0, 1, 1), (0, 2, 2, 1)],
+        ]
+
+
+class Test_2_2_DualLonger(Test_2_2):
+    def defs(self):
+        return [
+            [(0, 0, 0, 1), (1, 0, 1, 1), (0, 1, 2, 1)],
+            [(0, 0, 0, 1), (2, 0, 1, 1), (0, 2, 2, 1)],
+        ]
+
+
+class Test_2_2_SingleLonger(Test_2_2):
+    def defs(self):
+        return [
+            [(0, 0, 0, 1), (1, 0, 1, 1), (0, 1, 2, 1)],
+            [(0, 0, 0, 1), (1, 0, 1, 1), (0, 2, 2, 1)],
+        ]
+
+
+class Test_2_2_ContainEdge(Test_2_2):
+    def defs(self):
+        return [
+            [(0, 0, 0, 1), (1, 0, 1, 1), (0, 1, 2, 1)],
+            [(0, 0, 0, 1), (1, 0, 1, 1), (1, 1, 2, 1)],
+        ]
+
+
+class Test_2_2_OverlapEdge(Test_2_2):
+    def defs(self):
+        return [
+            [(0, 0, 0, 1), (2, 0, 1, 1), (0, 1, 2, 1)],
+            [(0, 0, 0, 1), (1, 0, 1, 1), (1, 1, 2, 1)],
+        ]
+
+
+class Test_2_2_Overlap(Test_2_2):
+    def defs(self):
+        return [
+            [(0, 0, 0, 1), (1, 0, 1, 1), (0, 8, 2, 1)],
+            [(-1, 1, 0, 1), (8, 0, 1, 1), (1, 1, 2, 1)],
+        ]
+
+
+class Test_2_2_EdgeStep(Test_2_2):
+    def defs(self):
+        return [
+            [(0, 0, 0, 1), (1, 0, 1, 1), (0, 1, 2, 1)],
+            [(0, 0, 0, 1), (1, 0, 2, 1), (0, -1, 2, 1)],
+        ]
+
+
+class Test_2_2_EdgeOverlap(Test_2_2):
+    def defs(self):
+        return [
+            [(0, 0, 0, 1), (1, 0, 1, 1), (0, 1, 2, 1)],
+            [(0, 0, 0, 1), (2, 0, 2, 1), (0, -1, 2, 1)],
+        ]
+
+
+class Test_2_2_PointStep(Test_2_2):
+    def defs(self):
+        return [
+            [(0, 0, 0, 1), (1, 0, 1, 1), (0, 1, 2, 1)],
+            [(0, 0, 1, 1), (-1, 0, 2, 1), (0, -1, 2, 1)],
+        ]
+
+
+class Test_2_2_PointOnEdge(Test_2_2):
+    def defs(self):
+        return [
+            [(0, 0, 0, 1), (2, 0, 2, 1), (0, 1, 2, 1)],
+            [(1, 0, 1, 1), (-1, -1, 2, 1), (0, -1, 2, 1)],
+        ]
+
+

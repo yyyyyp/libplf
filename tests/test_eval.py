@@ -38,6 +38,13 @@ class Test_1_1(Test):
             [(0, 0), (1, 1)],
         ]
 
+    def rets(self):
+        return [
+            [
+                (0.5,),
+                vector(0.5),
+            ]
+        ]
 
 class Test_1_2(Test):
     def args(self):
@@ -52,8 +59,15 @@ class Test_1_2(Test):
     def defs(self):
         return [
             [(0, 0, 0), (1, 1, 1)],
+            [(1, 1, 1), (2, 2, 3)],
         ]
-
+    def rets(self):
+        return [
+            [
+                (1.5,),
+                vector(1.5,2),
+            ]
+        ]
 
 class Test_2_1(Test):
     def args(self):
@@ -77,4 +91,54 @@ class Test_2_1(Test):
                 (1, 0, 1),
                 (0, 1, 2),
             ],
+            [
+                (1, 1, -2),
+                (1, 2, -3),
+                (2, 1, -3),
+            ]
+        ]
+    def rets(self):
+        return [
+            [
+                (1, 0),
+                vector(1),
+            ]
+        ]
+
+
+class Test_2_2(Test):
+    def args(self):
+        return [
+            piece(
+                point(vector(ax, ay), vector(az, au)),
+                point(vector(bx, by), vector(bz, bu)),
+                point(vector(cx, cy), vector(cz, cu)),
+            )
+            for
+            (ax, ay, az, au),
+            (bx, by, bz, bu),
+            (cx, cy, cz, cu),
+            in self.defs()
+        ]
+
+    def defs(self):
+        return [
+            [
+                (0, 0, 0, 1),
+                (1, 0, 1, 1),
+                (0, 1, 2, 1),
+            ],
+            [
+                (1, 1, -2, 1),
+                (1, 2, -3, 1),
+                (2, 1, -3, 1),
+            ]
+        ]
+
+    def rets(self):
+        return [
+            [
+                (1.5, 1),
+                vector(-2.5, 1),
+            ]
         ]
